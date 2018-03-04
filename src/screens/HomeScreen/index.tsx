@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Card, CardItem} from 'native-base'
+import {Container, Header, Title, Item, Input, Left, Icon, Right, Button, Body, Content, Text, Card, CardItem} from 'native-base'
 
 interface Props {
     navigation: { navigate: (scene: String) => void }
@@ -24,7 +24,10 @@ class HomeScreen extends React.Component<Props> {
                     <Card>
                         <CardItem>
                             <Body>
-                            <Text>Chat App to talk some awesome people!</Text>
+                            <Item success>
+                                <Input placeholder='Textbox with Success Input'/>
+                                <Icon name='checkmark-circle'/>
+                            </Item>
                             </Body>
                         </CardItem>
                     </Card>
