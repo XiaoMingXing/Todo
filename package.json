@@ -18,10 +18,7 @@
     "react": "16.0.0",
     "react-base": "latest",
     "react-native": "0.54.0",
-    "react-native-navigation": "^1.1.396",
-    "react-redux": "^5.0.7",
-    "redux": "^3.7.2",
-    "redux-form": "^7.3.0"
+    "react-native-navigation": "^1.1.396"
   },
   "devDependencies": {
     "@types/jest": "^22.1.4",

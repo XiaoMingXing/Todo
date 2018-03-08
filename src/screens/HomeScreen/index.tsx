@@ -1,15 +1,10 @@
 import React from 'react'
 import {Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Card, CardItem} from 'native-base'
 import LoginForm from '../../components/LoginForm'
-import allReducers from '../../reducers'
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
 
 interface Props {
     navigation: { navigate: (scene: String) => void }
 }
-
-const store = createStore(allReducers)
 
 class HomeScreen extends React.Component<Props> {
     render() {
@@ -29,12 +24,7 @@ class HomeScreen extends React.Component<Props> {
                 <Content padder>
                     <Card>
                         <CardItem>
-                            <Body>
-                            <Provider store={store}>
-                                <LoginForm/>
-                            </Provider>
-
-                            </Body>
+                            <LoginForm/>
                         </CardItem>
                     </Card>
                     <Button full rounded dark
