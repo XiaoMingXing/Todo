@@ -7,6 +7,7 @@ import SideBar from './components/SideBar'
 import Profile from './screens/ProfileScreen/Profile'
 import EditScreenOne from './screens/ProfileScreen/EditScreenOne'
 import EditScreenTwo from './screens/ProfileScreen/EditScreenTwo'
+import PhotoScreen from './screens/PhotoScreen'
 
 const ProfileNav = StackNavigator({
     Profile: {screen: Profile},
@@ -16,11 +17,12 @@ const ProfileNav = StackNavigator({
 
 const DrawerNav = DrawerNavigator({
     Home: {screen: HomeScreen},
+    Photo: {screen: PhotoScreen},
     Chat: {screen: ChatScreen},
     Profile: {screen: ProfileNav}
 }, {
     contentComponent: props => <SideBar {...props} />,
-    initialRouteName: 'Home'
+    initialRouteName: 'Photo'
 })
 
 export default class Todo extends React.Component {
