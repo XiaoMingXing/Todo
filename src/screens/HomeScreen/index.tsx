@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text, Card, CardItem} from 'native-base'
+import {Container, Header, Card, CardItem, Title, Left, Icon, Right, Button, Body, Content} from 'native-base'
 import LoginForm from '../../components/LoginForm'
 
 interface Props {
@@ -27,16 +27,6 @@ class HomeScreen extends React.Component<Props> {
                             <LoginForm/>
                         </CardItem>
                     </Card>
-                    <Button full rounded dark
-                            style={{marginTop: 10}}
-                            onPress={() => this.props.navigation.navigate('Chat')}>
-                        <Text>Chat With People</Text>
-                    </Button>
-                    <Button full rounded primary
-                            style={{marginTop: 10}}
-                            onPress={() => this.props.navigation.navigate('Profile')}>
-                        <Text>Goto Profiles</Text>
-                    </Button>
                 </Content>
             </Container>
         )

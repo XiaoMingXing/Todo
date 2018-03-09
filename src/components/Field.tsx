@@ -8,7 +8,8 @@ interface Props {
     name: String,
     validates: Array<Validator<any>>,
     placeHolder?: string,
-    securityEntry?: boolean
+    securityEntry?: boolean,
+    bind?: any
 }
 
 interface State {
