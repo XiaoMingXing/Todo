@@ -45,12 +45,23 @@ export default class CustomizeScreen extends React.Component<Props, State> {
         selectedImages.forEach((currentImage) => {
             NativeModules.ReadImageData.readImage(currentImage.uri, (image) => {
                 imagesNeedToSave.push(image)
-                console.log('add one image')
             })
         })
-
-        console.log('SAVE Images to backend: ', imagesNeedToSave.length)
+        // This will not work correctly, because of readImage is async call
+        this.storeImages(imagesNeedToSave)
     }
+
+    storeImages = (images: Array<any>) => {
+        fetch('http://localhost:3001', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({imageDatas: images})
+        })
+    }
+
 
     componentDidMount() {
         const fetchParams: GetPhotosParamType = {

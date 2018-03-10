@@ -8,7 +8,7 @@ import {
     Content
 } from 'native-base'
 
-const routes = ['Home', 'Photo', 'Chat', 'Profile']
+const routes = ['Home', 'Photo', 'Redux', 'Chat', 'Profile']
 
 interface Props {
     navigation: { navigate: (scene: String) => void }

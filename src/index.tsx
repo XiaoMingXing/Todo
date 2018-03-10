@@ -9,6 +9,7 @@ import EditScreenOne from './screens/ProfileScreen/EditScreenOne'
 import EditScreenTwo from './screens/ProfileScreen/EditScreenTwo'
 import CustomizeScreen from './screens/PhotoScreen/CustomizeScreen'
 import ImagePickerScreen from './screens/PhotoScreen/ImagePickerScreen'
+import ReduxScreen from './screens/ReduxScreen'
 
 let PhotoNav = StackNavigator({
     ImagePickerScreen: {screen: ImagePickerScreen},
@@ -31,7 +32,8 @@ const DrawerNav = DrawerNavigator({
     Home: {screen: HomeScreen},
     Photo: {screen: PhotoNav},
     Chat: {screen: ChatScreen},
-    Profile: {screen: ProfileNav}
+    Profile: {screen: ProfileNav},
+    Redux: {screen: ReduxScreen}
 }, {
     contentComponent: props => <SideBar {...props} />,
     initialRouteName: 'Photo'
