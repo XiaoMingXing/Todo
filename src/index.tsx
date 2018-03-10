@@ -7,7 +7,19 @@ import SideBar from './components/SideBar'
 import Profile from './screens/ProfileScreen/Profile'
 import EditScreenOne from './screens/ProfileScreen/EditScreenOne'
 import EditScreenTwo from './screens/ProfileScreen/EditScreenTwo'
-import PhotoScreen from './screens/PhotoScreen'
+import CustomizeScreen from './screens/PhotoScreen/CustomizeScreen'
+import ImagePickerScreen from './screens/PhotoScreen/ImagePickerScreen'
+
+let PhotoNav = StackNavigator({
+    ImagePickerScreen: {screen: ImagePickerScreen},
+    CustomizeScreen: {screen: CustomizeScreen}
+}, {
+    initialRouteName: 'ImagePickerScreen',
+    headerMode: 'none',
+    navigationOptions: ({}) => ({
+        title: 'Menu'
+    })
+})
 
 const ProfileNav = StackNavigator({
     Profile: {screen: Profile},
@@ -17,7 +29,7 @@ const ProfileNav = StackNavigator({
 
 const DrawerNav = DrawerNavigator({
     Home: {screen: HomeScreen},
-    Photo: {screen: PhotoScreen},
+    Photo: {screen: PhotoNav},
     Chat: {screen: ChatScreen},
     Profile: {screen: ProfileNav}
 }, {

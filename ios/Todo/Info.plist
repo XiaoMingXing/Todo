@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access Gallery to pick image</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Add photo to gallery</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Need Camera to capture image</string>
 	<key>CFBundleDevelopmentRegion</key>
