@@ -6,8 +6,7 @@ import {
 import {Container, Content, Header, Title, Left, Right, Body, Icon} from 'native-base'
 
 interface State {
-    images: any,
-    selected: any
+    images: any
 }
 
 interface Props {
@@ -19,19 +18,8 @@ export default class CustomizeScreen extends React.Component<Props, State> {
     constructor(props) {
         super(props)
         this.state = {
-            images: [],
-            selected: []
+            images: []
         }
-    }
-
-    hasSelected = (uri: string) => {
-        let selected = false
-        this.state.selected.forEach((selectedImage) => {
-            if (selectedImage.uri === uri) {
-                selected = true
-            }
-        })
-        return selected
     }
 
     selectImage = (uri: string) => {
@@ -48,30 +36,20 @@ export default class CustomizeScreen extends React.Component<Props, State> {
         this.setState({images: selectedImages})
     }
 
-
-    selectImage2(uri) {
-        NativeModules.ReadImageData.readImage(uri, (image) => {
-            if (this.hasSelected(uri)) {
-                return
-            }
-            let selectedImages = this.state.selected
-            selectedImages.push({
-                uri: uri,
-                image: image,
-                selected: true
-            })
-            this.setState({
-                selected: selectedImages
+    saveImages = () => {
+        let imagesNeedToSave = []
+        let selectedImages = this.getSelectedImages()
+        if (!selectedImages.length) {
+            return
+        }
+        selectedImages.forEach((currentImage) => {
+            NativeModules.ReadImageData.readImage(currentImage.uri, (image) => {
+                imagesNeedToSave.push(image)
+                console.log('add one image')
             })
         })
-    }
 
-    storeImages(data) {
-        const assets = data.edges
-        const images = assets.map((asset) => asset.node.image)
-        this.setState({
-            images: images
-        })
+        console.log('SAVE Images to backend: ', imagesNeedToSave.length)
     }
 
     componentDidMount() {
@@ -100,13 +78,13 @@ export default class CustomizeScreen extends React.Component<Props, State> {
     }
 
     getSelectedImages = () => {
-        let count = 0
+        let selected = []
         this.state.images.forEach((image) => {
             if (image.selected) {
-                count++
+                selected.push(image)
             }
         })
-        return count
+        return selected
     }
 
     render() {
@@ -124,9 +102,7 @@ export default class CustomizeScreen extends React.Component<Props, State> {
                     <Title>PhotoScreen</Title>
                     </Body>
                     <Right>
-                        <TouchableOpacity onPress={() => {
-                            console.log('Save')
-                        }}>
+                        <TouchableOpacity onPress={this.saveImages.bind(this)}>
                             <Text style={styles.headerNext}>Save</Text>
                         </TouchableOpacity>
                     </Right>
@@ -135,7 +111,7 @@ export default class CustomizeScreen extends React.Component<Props, State> {
                     <ScrollView style={styles.container}>
                         <View>
                             <Text>Total number of images: {this.state.images.length}</Text>
-                            <Text>Selected images: {this.getSelectedImages()}</Text>
+                            <Text>Selected images: {this.getSelectedImages().length}</Text>
                         </View>
                         <View style={styles.imageGrid}>
                             {

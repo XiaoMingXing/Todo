@@ -76,11 +76,12 @@ class ImagePickerScreen extends React.Component<Props, State> {
                 <View style={styles.container}>
                     <View>
                         <Text style={styles.titleText}>Third party library version: react-native-image-picker </Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('CustomizeScreen')}>
-                            <Text style={styles.link}>Check customize version</Text>
-                        </TouchableOpacity>
                     </View>
                     <View>
+                        <Button iconRight info style={styles.button} primary onPress={() => this.props.navigation.navigate('CustomizeScreen')}>
+                            <Text> Customize Choose photo </Text>
+                            <Icon name='arrow-forward'/>
+                        </Button>
                         <Button style={styles.button} primary onPress={this.selectPhotoTapped.bind(this)}>
                             <Text> Choose photo </Text>
                         </Button>
