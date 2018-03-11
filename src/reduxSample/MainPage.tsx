@@ -1,15 +1,24 @@
 import React, {Component} from 'react'
-import {View, Button} from 'react-native'
+import {Button, View} from 'react-native'
 import {COLORS} from './Colors'
+import {connect} from 'react-redux'
 
-class MainPage extends Component {
+interface Props {
+    navigation: {
+        goBack: () => void,
+        navigate: (screen: string, params?: object) => void
+    }
+    colorName: string
+}
+
+class MainPage extends Component<Props> {
 
     onChooseColor() {
-
+        this.props.navigation.navigate('ChooseColor')
     }
 
     selectedColor() {
-        const colorName = 'RED'
+        const {colorName} = this.props
         return COLORS[colorName].hexCode
     }
 
@@ -26,4 +35,8 @@ class MainPage extends Component {
     }
 }
 
-export default MainPage
+const mapStateToProps = state => {
+    return {colorName: state.color.colorName}
+}
+
+export default connect(mapStateToProps)(MainPage)
