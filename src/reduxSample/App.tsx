@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import AppWithNavigationState from './AppNavigatorWithState'
 import {middleware} from '../config/utils'
 
-export default class App extends React.Component {
+export default class ReduxSampleApp extends React.Component {
     store = createStore(
         AppReducer,
         applyMiddleware(middleware)

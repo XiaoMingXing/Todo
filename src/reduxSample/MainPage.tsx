@@ -29,7 +29,7 @@ class MainPage extends Component<Props> {
                 <Button
                     onPress={this.onChooseColor.bind(this)}
                     color='#FFF'
-                    title='Choose Color'/>
+                    title='Choose Photo'/>
             </View>
         )
     }
