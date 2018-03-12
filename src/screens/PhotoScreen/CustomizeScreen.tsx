@@ -1,19 +1,30 @@
 import React from 'react'
 import {
-    Image, ScrollView, TouchableHighlight, View, StyleSheet, NativeModules, CameraRoll, GetPhotosParamType, Text,
-    TouchableOpacity
+    CameraRoll,
+    GetPhotosParamType,
+    Image,
+    NativeModules,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    TouchableOpacity,
+    View
 } from 'react-native'
-import {Container, Content, Header, Title, Left, Right, Body, Icon} from 'native-base'
+import {Body, Container, Content, Header, Icon, Left, Right, Title} from 'native-base'
+import {connect} from 'react-redux'
+import {photoSelected} from '../../reduxSample/ColorChangedAction'
 
 interface State {
-    images: any
+    images: Array<any>
 }
 
 interface Props {
-    navigation: { goBack: () => void }
+    navigation: { goBack: () => void },
+    photoSelected: Function
 }
 
-export default class CustomizeScreen extends React.Component<Props, State> {
+class CustomizeScreen extends React.Component<Props, State> {
 
     constructor(props) {
         super(props)
@@ -36,7 +47,7 @@ export default class CustomizeScreen extends React.Component<Props, State> {
         this.setState({images: selectedImages})
     }
 
-    saveImages = () => {
+    saveImages1 = () => {
         let imagesNeedToSave = []
         let selectedImages = this.getSelectedImages()
         if (!selectedImages.length) {
@@ -47,11 +58,19 @@ export default class CustomizeScreen extends React.Component<Props, State> {
                 imagesNeedToSave.push(image)
             })
         })
+
         // This will not work correctly, because of readImage is async call
         this.storeImages(imagesNeedToSave)
     }
 
+    saveImages = () => {
+        const imageUris = this.getSelectedImages().map((image) => image.uri)
+        this.props.photoSelected(imageUris)
+        this.props.navigation.goBack()
+    }
+
     storeImages = (images: Array<any>) => {
+        console.log('Images: ', images.length)
         fetch('http://localhost:3001', {
             method: 'POST',
             headers: {
@@ -61,7 +80,6 @@ export default class CustomizeScreen extends React.Component<Props, State> {
             body: JSON.stringify({imageDatas: images})
         })
     }
-
 
     componentDidMount() {
         const fetchParams: GetPhotosParamType = {
@@ -114,7 +132,7 @@ export default class CustomizeScreen extends React.Component<Props, State> {
                     </Body>
                     <Right>
                         <TouchableOpacity onPress={this.saveImages.bind(this)}>
-                            <Text style={styles.headerNext}>Save</Text>
+                            <Text style={styles.headerNext}>Confirm</Text>
                         </TouchableOpacity>
                     </Right>
                 </Header>
@@ -171,3 +189,6 @@ const styles = StyleSheet.create({
         color: '#007aff'
     }
 })
+
+const mapStateToProps = () => ({})
+export default connect(mapStateToProps, {photoSelected})(CustomizeScreen)

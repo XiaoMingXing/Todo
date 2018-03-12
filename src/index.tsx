@@ -36,7 +36,7 @@ const DrawerNav = DrawerNavigator({
     Redux: {screen: ReduxSampleApp}
 }, {
     contentComponent: props => <SideBar {...props} />,
-    initialRouteName: 'Home'
+    initialRouteName: 'Redux'
 })
 
 export default class Todo extends React.Component {

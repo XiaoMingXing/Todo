@@ -1,21 +1,23 @@
 import React, {Component} from 'react'
 import {Button, View} from 'react-native'
 import {COLORS} from './Colors'
-import {colorChanged} from './ColorChangedAction'
+import {colorChanged, sizeChanged} from './ColorChangedAction'
 import {connect} from 'react-redux'
 
 interface Props {
     navigation: {
         goBack: () => void,
-        navigate: (screen: string, params: object) => void
+        navigate: (screen: string, params?: object) => void
     },
-    colorChanged: Function
+    colorChanged: Function,
+    sizeChanged: Function
 }
 
 class ChooseColorPage extends Component<Props> {
 
-    onSelectColor(colorName) {
+    onSelectColor(colorName, size) {
         this.props.colorChanged({colorName})
+        this.props.sizeChanged({size})
         this.props.navigation.goBack()
     }
 
@@ -27,7 +29,7 @@ class ChooseColorPage extends Component<Props> {
                         key={key}
                         title={COLORS[key].name}
                         color={COLORS[key].hexCode}
-                        onPress={() => this.onSelectColor(key)}
+                        onPress={() => this.onSelectColor(key, 12)}
                     />
                 ))}
             </View>
@@ -36,4 +38,4 @@ class ChooseColorPage extends Component<Props> {
 }
 
 const mapStateToProps = () => ({})
-export default connect(mapStateToProps, {colorChanged})(ChooseColorPage)
+export default connect(mapStateToProps, {colorChanged, sizeChanged})(ChooseColorPage)
