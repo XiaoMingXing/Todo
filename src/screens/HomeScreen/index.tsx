@@ -1,12 +1,24 @@
 import React from 'react'
-import {Container, Header, Card, CardItem, Title, Left, Icon, Right, Button, Body, Content} from 'native-base'
-import LoginForm from '../../components/LoginForm'
+import {Body, Button, Card, CardItem, Container, Content, Header, Icon, Left, Right, Title} from 'native-base'
+import store from "../ReduxScreen/store";
+import {applyMiddleware, createStore} from "redux";
+import {middleware} from "../../config/utils";
+import {Provider} from 'react-redux'
+import FormReducer from "./FormReducer";
+import LoginFormTemp from "../../components/LoginFormTemp";
+
 
 interface Props {
     navigation: { navigate: (scene: String) => void }
 }
 
 class HomeScreen extends React.Component<Props> {
+
+    store = createStore(
+        FormReducer,
+        applyMiddleware(middleware)
+    )
+
     render() {
         return (
             <Container>
@@ -24,7 +36,9 @@ class HomeScreen extends React.Component<Props> {
                 <Content padder>
                     <Card>
                         <CardItem>
-                            <LoginForm/>
+                            <Provider store={store}>
+                                <LoginFormTemp/>
+                            </Provider>
                         </CardItem>
                     </Card>
                 </Content>

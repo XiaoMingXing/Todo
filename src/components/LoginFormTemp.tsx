@@ -3,15 +3,13 @@ import {Body, Button, Text} from 'native-base'
 import {StyleSheet} from 'react-native'
 import Field from './Field'
 import {EmailValidator, NotEmptyValidator, PasswordValidator} from '../validate/Validators'
+import Form from "./Form";
 
-interface State {
-    user: {
-        email: string,
-        password: string
+export default class LoginFormTemp extends Form {
+    constructor(props) {
+        super(props);
     }
-}
 
-export default class LoginForm extends React.Component<{}, State> {
     private MESSAGES = {
         emailNotEmpty: 'The email format should not empty!',
         emailValid: 'The email format is invalid',
@@ -19,39 +17,37 @@ export default class LoginForm extends React.Component<{}, State> {
         passwordValid: 'Password should contains Uppercase, Lowercase and number!'
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {email: '', password: ''}
-        }
+    onPress = () => {
+        let {formData} = this.state;
+        console.log(formData)
+        // fetch('https://localhost:3000/v1/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(this.props.formData)
+        // })
     }
 
-    onPress = () => {
-        console.log(this.state);
-        fetch('https://localhost:3000/v1/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.props)
-        })
-    }
 
     render() {
-        const emailNotEmpty = this.MESSAGES.emailNotEmpty
-        const emailValid = this.MESSAGES.emailValid
+        const emailNotEmpty = this.MESSAGES.emailNotEmpty;
+        const emailValid = this.MESSAGES.emailValid;
+
         const validators: any = [
             new NotEmptyValidator(emailNotEmpty),
-            new EmailValidator(emailValid)]
+            new EmailValidator(emailValid)];
         const passwordValidators: any = [
             new NotEmptyValidator(this.MESSAGES.passwordNotEmpty),
-            new PasswordValidator(this.MESSAGES.passwordValid)]
+            new PasswordValidator(this.MESSAGES.passwordValid)];
 
         return (
             <Body>
-            <Field name='email' placeHolder='Email' validates={validators}/>
+            <Field name='email' placeHolder='Email' validates={validators}
+                   bind={this.callback.bind(this)}/>
             <Field name='password' placeHolder='Password' validates={passwordValidators}
+                   bind={this.callback.bind(this)}
                    securityEntry={true}/>
             <Button full style={styles.button} onPress={this.onPress}>
                 <Text>Login</Text>
@@ -60,7 +56,6 @@ export default class LoginForm extends React.Component<{}, State> {
         )
     }
 }
-
 const styles = StyleSheet.create({
     button: {
         marginTop: 10

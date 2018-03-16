@@ -1,5 +1,5 @@
 import React from 'react'
-import AppReducer from './AppReducer'
+import AppReducer from './reducers'
 import {applyMiddleware, createStore} from 'redux'
 import {Provider} from 'react-redux'
 import AppWithNavigationState from './AppNavigatorWithState'

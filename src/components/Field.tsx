@@ -1,15 +1,14 @@
 import * as React from 'react'
-import {Item, Input, Icon, Body} from 'native-base'
-import {Validator} from '../validate/Validators'
-import {StyleSheet, View, Text, Dimensions} from 'react-native'
+import {Body, Icon, Input, Item} from 'native-base'
+import {Dimensions, StyleSheet, Text, View} from 'react-native'
 
 interface Props {
     isReady?: false
     name: String,
-    validates: Array<Validator<any>>,
+    validates: Array<any>,
     placeHolder?: string,
     securityEntry?: boolean,
-    bind?: any
+    bind?: Function
 }
 
 interface State {
@@ -31,7 +30,7 @@ class AbstractField extends React.Component<Props, State> {
 
     validate = (): any => {
         let isValid: boolean = false
-        for (let validate  of this.props.validates) {
+        for (let validate of this.props.validates) {
             if (!validate.validate(this.state.value)) {
                 return validate
             }
@@ -72,10 +71,15 @@ class AbstractField extends React.Component<Props, State> {
 
 export default class Field extends AbstractField {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             value: ''
         }
+    }
+
+    onBlur() {
+        this.triggerValidate();
+        this.props.bind(this.props.name, this.state.value);
     }
 
     render() {
@@ -85,14 +89,15 @@ export default class Field extends AbstractField {
                 <Input placeholder={this.props.placeHolder}
                        value={this.state.value}
                        onChangeText={(value) => this.setState({value})}
-                       onBlur={this.triggerValidate}
+                       onBlur={this.onBlur.bind(this)}
                        autoCapitalize='none'
                        secureTextEntry={this.props.securityEntry}
                        autoCorrect={false}/>
                 {<Icon name={this.getCurrentIcon()}/>}
             </Item>
             <View style={styles.container}>
-                {<Text style={this.state.isValid ? styles.message : styles.errorText}>{this.state.currentErrorMsg}</Text>}
+                {<Text
+                    style={this.state.isValid ? styles.message : styles.errorText}>{this.state.currentErrorMsg}</Text>}
             </View>
             </Body>
         )

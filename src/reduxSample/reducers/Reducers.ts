@@ -3,7 +3,7 @@ const initialState = {
     size: 15
 }
 
-const ColorReducer = (state = initialState, action) => {
+export const ColorReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'COLOR_CHANGED':
             return {...state, colorName: action.payload.colorName}
@@ -12,6 +12,15 @@ const ColorReducer = (state = initialState, action) => {
         default:
             return state
     }
+};
+
+
+export const PhotoReducer = (state = {images: []}, action) => {
+    switch (action.type) {
+        case 'PHOTO_SELECTED':
+            return {...state, images: action.payload.images}
+        default:
+            return state
+    }
 }
 
-export default ColorReducer

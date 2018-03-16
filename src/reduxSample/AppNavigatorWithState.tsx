@@ -1,7 +1,7 @@
 import React from 'react'
 import {addNavigationHelpers} from 'react-navigation'
 import {connect} from 'react-redux'
-import AppNavigator from './Navigators'
+import AppNavigator from './nav/Navigators'
 import {addListener} from '../config/utils'
 
 const AppWithState = ({dispatch, nav}) => (

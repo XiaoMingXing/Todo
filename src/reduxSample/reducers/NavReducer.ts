@@ -1,4 +1,4 @@
-import AppNavigator from './Navigators'
+import AppNavigator from '../nav/Navigators'
 
 const router = AppNavigator.router
 const mainNavAction = router.getActionForPathAndParams('Main')

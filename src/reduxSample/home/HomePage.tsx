@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {StyleSheet, View} from 'react-native'
-import {COLORS} from './Colors'
+import {COLORS} from '../color/Colors'
 import {connect} from 'react-redux'
 import {Button, Icon, Text} from 'native-base'
-import CustomizeHeader from '../components/CustomizeHeader'
+import CustomizeHeader from '../../components/CustomizeHeader'
 
 interface Props {
     navigation: {
@@ -57,7 +57,7 @@ class MainPage extends Component<Props> {
                         color='#FFF'
                         style={styles.button}
                         onPress={() => this.props.navigation.navigate('CustomizeScreen')}>
-                    <Text> Customize Choose photo </Text>
+                    <Text> Customize Choose photo</Text>
                     <Icon name='arrow-forward'/>
                 </Button>
             </View>
@@ -66,7 +66,6 @@ class MainPage extends Component<Props> {
 }
 
 const mapStateToProps = state => {
-    debugger
     return {
         colorName: state.color.colorName,
         size: state.color.size,
