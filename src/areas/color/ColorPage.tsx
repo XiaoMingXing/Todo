@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button, View} from 'react-native'
 import {COLORS} from './Colors'
-import {colorChanged, sizeChanged} from '../actions'
+import {colorChanged, sizeChanged} from '../../actions/index'
 import {connect} from 'react-redux'
 
 interface Props {

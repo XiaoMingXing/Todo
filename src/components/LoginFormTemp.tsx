@@ -2,8 +2,8 @@ import React from 'react'
 import {Body, Button, Text} from 'native-base'
 import {StyleSheet} from 'react-native'
 import Field from './Field'
-import {EmailValidator, NotEmptyValidator, PasswordValidator} from '../validate/Validators'
 import Form from "./Form";
+import {EmailValidator, NotEmptyValidator, PasswordValidator} from "../validate/Validators";
 
 export default class LoginFormTemp extends Form {
     constructor(props) {

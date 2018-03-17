@@ -13,7 +13,7 @@ import {
 } from 'react-native'
 import {Body, Container, Content, Header, Icon, Left, Right, Title} from 'native-base'
 import {connect} from 'react-redux'
-import {photoSelected} from '../../reduxSample/actions'
+import {photoSelected} from '../../actions/index'
 
 interface State {
     images: Array<any>

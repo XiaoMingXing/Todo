@@ -1,7 +1,7 @@
-import AppNavigator from '../nav/Navigators'
+import AppRoutes from "../config/Routes";
 
-const router = AppNavigator.router
-const mainNavAction = router.getActionForPathAndParams('Main')
+const router = AppRoutes.router
+const mainNavAction = router.getActionForPathAndParams('Home')
 const initialNavState = router.getStateForAction(mainNavAction)
 
 const NavReducer = (state = initialNavState, action) => {

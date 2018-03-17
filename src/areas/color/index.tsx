@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {StyleSheet, View} from 'react-native'
-import {COLORS} from '../color/Colors'
+import {COLORS} from './Colors'
 import {connect} from 'react-redux'
 import {Button, Icon, Text} from 'native-base'
 import CustomizeHeader from '../../components/CustomizeHeader'
