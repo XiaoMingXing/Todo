@@ -1,6 +1,6 @@
 import React from 'react'
 import {Body, Button, Card, CardItem, Container, Content, Header, Icon, Left, Right, Title} from 'native-base'
-import LoginForm from "../../components/LoginFormTemp";
+import LoginForm from "../../components/LoginForm";
 
 
 interface Props {
