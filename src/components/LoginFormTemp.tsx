@@ -5,9 +5,13 @@ import Field from './Field'
 import Form from "./Form";
 import {EmailValidator, NotEmptyValidator, PasswordValidator} from "../validate/Validators";
 
-export default class LoginFormTemp extends Form {
+
+export default class LoginFormTemp extends React.Component<{}> {
+    private user: object;
+
     constructor(props) {
         super(props);
+        this.user = {};
     }
 
     private MESSAGES = {
@@ -15,7 +19,7 @@ export default class LoginFormTemp extends Form {
         emailValid: 'The email format is invalid',
         passwordNotEmpty: 'Password should not empty!',
         passwordValid: 'Password should contains Uppercase, Lowercase and number!'
-    }
+    };
 
     onPress = () => {
         console.log("PRESS:  ", this.user)
