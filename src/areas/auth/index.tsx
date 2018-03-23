@@ -1,6 +1,6 @@
 import React from 'react'
 import {Body, Button, Card, CardItem, Container, Content, Header, Icon, Left, Right, Title} from 'native-base'
-import LoginFormTemp from "../../components/LoginFormTemp";
+import LoginForm from "../../components/LoginFormTemp";
 
 
 interface Props {
@@ -26,7 +26,7 @@ class AuthPage extends React.Component<Props> {
                 <Content padder>
                     <Card>
                         <CardItem>
-                            <LoginFormTemp/>
+                            <LoginForm/>
                         </CardItem>
                     </Card>
                 </Content>
