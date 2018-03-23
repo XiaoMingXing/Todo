@@ -25,12 +25,12 @@ export const PhotoReducer = (state = {images: []}, action) => {
 }
 
 export const FormReducer = (state = {formData: {}}, action) => {
+
     switch (action.type) {
         case 'FORM_UPDATED':
-            console.log("ACTION: ", action);
+            Object.assign( state.formData, action.payload)
             return {
-                ...state,
-                formData: action.payload
+                formData: state.formData
             };
         default:
             return state

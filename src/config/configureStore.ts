@@ -23,11 +23,9 @@ if (__DEV__) {
 
 const persistedReducer = persistReducer(persistConfig, AppReducer);
 
-export default () => {
-    let store = createStore(
-        persistedReducer,
-        composeWithDevTools(applyMiddleware(navigationMiddleware))
-    );
-    let persistor = persistStore(store);
-    return {store, persistor}
-}
+export const store = createStore(
+    persistedReducer,
+    composeWithDevTools(applyMiddleware(navigationMiddleware))
+);
+export const persistor = persistStore(store);
+

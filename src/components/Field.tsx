@@ -77,7 +77,7 @@ class Field extends AbstractField {
         super(props);
         this.state = {
             value: ''
-        }
+        };
     }
 
     onBlur() {
