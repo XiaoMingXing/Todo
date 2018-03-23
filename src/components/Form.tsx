@@ -19,6 +19,10 @@ class Form extends Component<Props> {
         this.setState({formData});
     };
 
+    componentDidMount() {
+        console.log("LOCAL STORAGE FORM: ", this.props.formData)
+    }
+
     componentDidUpdate() {
         let {formData} = this.props;
         this.props.fieldChange(formData)

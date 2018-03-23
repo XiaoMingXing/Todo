@@ -6,7 +6,6 @@ import {PersistGate} from "redux-persist/integration/react";
 import configureStore from "./config/configureStore"
 
 export default class Todo extends React.Component {
-
     render() {
         const {store, persistor} = configureStore();
         return (
