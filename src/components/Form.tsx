@@ -25,6 +25,7 @@ class Form extends Component<Props> {
 
     componentDidUpdate() {
         let {formData} = this.props;
+        console.log("FORM DATA", formData)
         this.props.fieldChange(formData)
     }
 

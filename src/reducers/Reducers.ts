@@ -28,10 +28,9 @@ export const FormReducer = (state = {formData: {}}, action) => {
 
     switch (action.type) {
         case 'FORM_UPDATED':
-            Object.assign( state.formData, action.payload)
             return {
-                formData: state.formData
-            };
+                formData: Object.assign({}, state.formData, action.payload)
+            }
         default:
             return state
     }
