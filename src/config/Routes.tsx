@@ -6,6 +6,7 @@ import CusImagePickerPage from "../areas/photo/CusImagePickerPage";
 import SideBar from "../components/SideBar";
 import AuthPage from "../areas/auth";
 import HomePage from "../areas/home";
+import ScrollablePage from "../areas/scroll";
 
 const ColorNav = StackNavigator({
     Main: {screen: MainPage},
@@ -19,7 +20,8 @@ const ColorNav = StackNavigator({
 const AppRoutes = DrawerNavigator({
     Home: {screen: HomePage},
     Auth: {screen: AuthPage},
-    Color: {screen: ColorNav}
+    Color: {screen: ColorNav},
+    Scroll: {screen: ScrollablePage}
 }, {
     contentComponent: props => <SideBar {...props} />,
     initialRouteName: 'Home'

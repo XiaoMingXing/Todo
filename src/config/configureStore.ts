@@ -9,9 +9,10 @@ import storage from 'redux-persist/lib/storage'
 
 
 const persistConfig = {
-    key: 'form',
+    key: 'root',
     storage,
-    stateReconciler: autoMergeLevel2
+    stateReconciler: autoMergeLevel2,
+    whitelist: ['form']
 };
 
 const middlewares = [];
