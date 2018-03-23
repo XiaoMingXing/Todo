@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux'
 import NavReducer from './NavReducer'
-import {ColorReducer, PhotoReducer} from './Reducers'
+import {ColorReducer, FormReducer, PhotoReducer} from './Reducers'
 
 const AppReducer = combineReducers({
     nav: NavReducer,
+    form: FormReducer,
     color: ColorReducer,
     photo: PhotoReducer
 })

@@ -1,41 +1,40 @@
 import React, {Component} from 'react'
-import {Text, View} from 'react-native'
+import {View} from 'react-native'
+import {connect} from 'react-redux'
 
 interface Props {
-    bind?: any
+    formData?: any,
+    fieldChange: Function
 }
 
-interface State {
-    formData: any
-}
-
-export default class Form extends Component<Props, State> {
+class Form extends Component<Props> {
 
     constructor(props) {
         super(props);
-        this.state = {
-            formData: {}
-        }
     }
 
     callback = (key, value) => {
-        let formData = this.state.formData;
+        let formData = this.props.formData;
         formData[key] = value;
-        this.setState({formData})
+        this.setState({formData});
     };
 
-
-    renderForm() {
-        return (<Text>Sample Form</Text>)
+    componentDidUpdate() {
+        let {formData} = this.props;
+        this.props.fieldChange(formData)
     }
 
     render() {
         return (
-            <View {...this.props}>
-                {this.renderForm()}
+            <View>
+                {this.props.children}
             </View>
         )
     }
-
 }
+
+const mapStateToProps = (state) => ({
+    formData: state.form.formData
+});
+export default connect(mapStateToProps)(Form)
 

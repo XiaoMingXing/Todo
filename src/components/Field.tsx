@@ -1,6 +1,8 @@
 import * as React from 'react'
 import {Body, Icon, Input, Item} from 'native-base'
 import {Dimensions, StyleSheet, Text, View} from 'react-native'
+import {connect} from 'react-redux';
+import {formUpdated} from "../actions";
 
 interface Props {
     isReady?: false
@@ -8,7 +10,8 @@ interface Props {
     validates: Array<any>,
     placeHolder?: string,
     securityEntry?: boolean,
-    bind?: Function
+    bind?: Function,
+    formUpdated?: Function
 }
 
 interface State {
@@ -69,7 +72,7 @@ class AbstractField extends React.Component<Props, State> {
 
 }
 
-export default class Field extends AbstractField {
+class Field extends AbstractField {
     constructor(props) {
         super(props);
         this.state = {
@@ -79,7 +82,9 @@ export default class Field extends AbstractField {
 
     onBlur() {
         this.triggerValidate();
-        this.props.bind(this.props.name, this.state.value);
+        let params = {};
+        params[this.props.name.toString()] = this.state.value;
+        this.props.formUpdated(params)
     }
 
     render() {
@@ -103,6 +108,9 @@ export default class Field extends AbstractField {
         )
     }
 }
+
+const mapStateToProps = () => ({})
+export default connect(mapStateToProps, {formUpdated})(Field)
 
 const styles = StyleSheet.create({
     successText: {

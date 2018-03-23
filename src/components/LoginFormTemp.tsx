@@ -18,18 +18,8 @@ export default class LoginFormTemp extends Form {
     }
 
     onPress = () => {
-        let {formData} = this.state;
-        console.log(formData)
-        // fetch('https://localhost:3000/v1/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(this.props.formData)
-        // })
-    }
-
+        console.log("PRESS:  ", this.user)
+    };
 
     render() {
         const emailNotEmpty = this.MESSAGES.emailNotEmpty;
@@ -44,18 +34,21 @@ export default class LoginFormTemp extends Form {
 
         return (
             <Body>
-            <Field name='email' placeHolder='Email' validates={validators}
-                   bind={this.callback.bind(this)}/>
-            <Field name='password' placeHolder='Password' validates={passwordValidators}
-                   bind={this.callback.bind(this)}
-                   securityEntry={true}/>
-            <Button full style={styles.button} onPress={this.onPress}>
-                <Text>Login</Text>
-            </Button>
+            <Form fieldChange={(data) => {
+                Object.assign(this.user, data)
+            }}>
+                <Field name='email' placeHolder='Email' validates={validators}/>
+                <Field name='password' placeHolder='Password' validates={passwordValidators}
+                       securityEntry={true}/>
+                <Button full style={styles.button} onPress={this.onPress.bind(this)}>
+                    <Text>Login</Text>
+                </Button>
+            </Form>
             </Body>
         )
     }
 }
+
 const styles = StyleSheet.create({
     button: {
         marginTop: 10

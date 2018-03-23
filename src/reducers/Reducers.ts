@@ -24,3 +24,16 @@ export const PhotoReducer = (state = {images: []}, action) => {
     }
 }
 
+export const FormReducer = (state = {formData: {}}, action) => {
+    switch (action.type) {
+        case 'FORM_UPDATED':
+            console.log("ACTION: ", action);
+            return {
+                ...state,
+                formData: action.payload
+            };
+        default:
+            return state
+    }
+}
+

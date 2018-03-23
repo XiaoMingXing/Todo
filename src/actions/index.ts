@@ -18,3 +18,10 @@ export const photoSelected = (images: Array<any>) => {
         payload: images
     }
 }
+
+export const formUpdated = (value) => {
+    return {
+        type: 'FORM_UPDATED',
+        payload: value
+    }
+}
