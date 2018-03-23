@@ -1,24 +1,22 @@
 import React from 'react'
-import AppReducer from './reducers'
-import {applyMiddleware, createStore} from 'redux'
 import {Provider} from 'react-redux'
 import AppWithNavigationState from './App'
-import {middleware} from './config/utils'
 import {AppRegistry} from "react-native";
+import {PersistGate} from "redux-persist/integration/react";
+import configureStore from "./config/configureStore"
 
 export default class Todo extends React.Component {
-    store = createStore(
-        AppReducer,
-        applyMiddleware(middleware)
-    )
 
     render() {
+        const {store, persistor} = configureStore();
         return (
-            <Provider store={this.store}>
-                <AppWithNavigationState/>
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <AppWithNavigationState/>
+                </PersistGate>
             </Provider>
         )
     }
 }
 
-AppRegistry.registerComponent('Todo', () => Todo)
+AppRegistry.registerComponent('Todo', () => Todo);
