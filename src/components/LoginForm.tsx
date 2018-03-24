@@ -1,12 +1,16 @@
 import React from 'react'
 import {Body, Button, Text} from 'native-base'
-import {StyleSheet} from 'react-native'
 import Field from './Field'
 import Form from "./Form";
 import {EmailValidator, NotEmptyValidator, PasswordValidator} from "../validate/Validators";
+import {connect} from "react-redux";
+import {validateField} from "../actions";
 
+interface Props {
+    validateField?: Function
+}
 
-export default class LoginForm extends React.Component<{}> {
+class LoginForm extends React.Component<Props> {
     private user: object;
 
     constructor(props) {
@@ -22,7 +26,8 @@ export default class LoginForm extends React.Component<{}> {
     };
 
     onPress = () => {
-        console.log("PRESS:  ", this.user)
+        console.log("PRESS:  ", this.user);
+        this.props.validateField(["email", "password"])
     };
 
     render() {
@@ -44,7 +49,7 @@ export default class LoginForm extends React.Component<{}> {
                 <Field name='email' placeHolder='Email' validates={validators}/>
                 <Field name='password' placeHolder='Password' validates={passwordValidators}
                        securityEntry={true}/>
-                <Button full style={styles.button} onPress={this.onPress.bind(this)}>
+                <Button full style={{marginTop: 10}} onPress={this.onPress.bind(this)}>
                     <Text>Login</Text>
                 </Button>
             </Form>
@@ -53,8 +58,8 @@ export default class LoginForm extends React.Component<{}> {
     }
 }
 
-const styles = StyleSheet.create({
-    button: {
-        marginTop: 10
-    }
-})
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, {validateField})(LoginForm)
+
+

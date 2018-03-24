@@ -1,3 +1,5 @@
+import {REDUX_ACTION} from "../config/Constants";
+
 const initialState = {
     colorName: 'RED',
     size: 15
@@ -35,4 +37,19 @@ export const FormReducer = (state = {formData: {}}, action) => {
             return state
     }
 }
+
+export const ValidateReducer = (state = [], action) => {
+    switch (action.type) {
+        case REDUX_ACTION.VALIDATE_ALL:
+        case REDUX_ACTION.VALIDATE_FILED:
+            console.log("ACTION: ", action.payload)
+            return {
+                fields: action.payload
+            };
+        default:
+            return state
+    }
+}
+
+
 

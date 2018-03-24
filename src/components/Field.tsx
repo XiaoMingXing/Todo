@@ -6,12 +6,13 @@ import {formUpdated} from "../actions";
 
 interface Props {
     isReady?: false
-    name: String,
+    name: string,
     validates: Array<any>,
     placeHolder?: string,
     securityEntry?: boolean,
     bind?: Function,
     formUpdated?: Function
+    fields: string[]
 }
 
 interface State {
@@ -78,6 +79,9 @@ class Field extends AbstractField {
         this.state = {
             value: ''
         };
+        // store.subscribe(() => {
+        //     console.log("STATE: ", store.getState())
+        // })
     }
 
     onBlur() {
@@ -85,6 +89,18 @@ class Field extends AbstractField {
         let params = {};
         params[this.props.name.toString()] = this.state.value;
         this.props.formUpdated(params)
+    }
+
+    componentWillReceiveProps() {
+        // console.log("STATE: ", store.getState())
+    }
+
+    componentDidUpdate() {
+        const {fields, name} = this.props;
+        if (!fields || fields.indexOf(name) === -1) {
+            return
+        }
+        this.triggerValidate()
     }
 
     render() {
@@ -109,7 +125,9 @@ class Field extends AbstractField {
     }
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = (state) => ({
+    fields: state.validate.fields
+})
 export default connect(mapStateToProps, {formUpdated})(Field)
 
 const styles = StyleSheet.create({

@@ -1,0 +1,4 @@
+export enum REDUX_ACTION {
+    VALIDATE_FILED,
+    VALIDATE_ALL,
+}

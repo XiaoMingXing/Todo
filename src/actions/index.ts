@@ -1,3 +1,5 @@
+import {REDUX_ACTION} from "../config/Constants";
+
 export const colorChanged = (value) => {
     return {
         type: 'COLOR_CHANGED',
@@ -22,6 +24,14 @@ export const photoSelected = (images: Array<any>) => {
 export const formUpdated = (value) => {
     return {
         type: 'FORM_UPDATED',
+        payload: value
+    }
+}
+
+// fields is array type, which fields want to trigger
+export const validateField = (value) => {
+    return {
+        type: REDUX_ACTION.VALIDATE_FILED,
         payload: value
     }
 }

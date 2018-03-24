@@ -17,6 +17,7 @@ class Form extends Component<Props> {
         let formData = this.props.formData;
         formData[key] = value;
         this.setState({formData});
+
     };
 
     componentDidMount() {
@@ -25,7 +26,6 @@ class Form extends Component<Props> {
 
     componentDidUpdate() {
         let {formData} = this.props;
-        console.log("FORM DATA", formData)
         this.props.fieldChange(formData)
     }
 
