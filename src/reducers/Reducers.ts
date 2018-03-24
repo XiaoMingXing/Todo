@@ -42,7 +42,6 @@ export const ValidateReducer = (state = [], action) => {
     switch (action.type) {
         case REDUX_ACTION.VALIDATE_ALL:
         case REDUX_ACTION.VALIDATE_FILED:
-            console.log("ACTION: ", action.payload)
             return {
                 fields: action.payload
             };

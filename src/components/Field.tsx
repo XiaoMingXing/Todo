@@ -12,7 +12,7 @@ interface Props {
     securityEntry?: boolean,
     bind?: Function,
     formUpdated?: Function
-    fields: string[]
+    fields: string[],
 }
 
 interface State {
@@ -91,16 +91,12 @@ class Field extends AbstractField {
         this.props.formUpdated(params)
     }
 
-    componentWillReceiveProps() {
-        // console.log("STATE: ", store.getState())
-    }
-
-    componentDidUpdate() {
-        const {fields, name} = this.props;
+    componentWillReceiveProps(props) {
+        const {fields, name} = props;
         if (!fields || fields.indexOf(name) === -1) {
             return
         }
-        this.triggerValidate()
+        this.triggerValidate();
     }
 
     render() {
@@ -125,9 +121,11 @@ class Field extends AbstractField {
     }
 }
 
-const mapStateToProps = (state) => ({
-    fields: state.validate.fields
-})
+const mapStateToProps = (state) => {
+    return {
+        fields: state.validate.fields
+    }
+}
 export default connect(mapStateToProps, {formUpdated})(Field)
 
 const styles = StyleSheet.create({
