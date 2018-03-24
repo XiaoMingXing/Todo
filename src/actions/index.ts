@@ -23,7 +23,7 @@ export const photoSelected = (images: Array<any>) => {
 
 export const formUpdated = (value) => {
     return {
-        type: 'FORM_UPDATED',
+        type: REDUX_ACTION.FORM_UPDATED,
         payload: value
     }
 }
@@ -35,3 +35,4 @@ export const validateField = (value) => {
         payload: value
     }
 }
+

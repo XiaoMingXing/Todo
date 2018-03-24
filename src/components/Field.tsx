@@ -10,7 +10,7 @@ interface Props {
     validates: Array<any>,
     placeHolder?: string,
     securityEntry?: boolean,
-    bind?: Function,
+    // for redux actions
     formUpdated?: Function
     fields: string[],
 }
@@ -24,7 +24,7 @@ interface State {
 
 class AbstractField extends React.Component<Props, State> {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isValid: true,
             isDirty: false,
@@ -33,7 +33,7 @@ class AbstractField extends React.Component<Props, State> {
     }
 
     validate = (): any => {
-        let isValid: boolean = false
+        let isValid: boolean = false;
         for (let validate of this.props.validates) {
             if (!validate.validate(this.state.value)) {
                 return validate
@@ -42,8 +42,8 @@ class AbstractField extends React.Component<Props, State> {
         return isValid
     }
 
-    triggerValidate = (): void => {
-        let errorValidator = this.validate()
+    triggerValidate = (): boolean => {
+        let errorValidator = this.validate();
         if (errorValidator) {
             this.setState({
                 isDirty: true,
@@ -57,6 +57,7 @@ class AbstractField extends React.Component<Props, State> {
                 currentErrorMsg: ''
             })
         }
+        return !errorValidator;
     }
 
     getCurrentStatus = (): any => {
@@ -85,9 +86,14 @@ class Field extends AbstractField {
     }
 
     onBlur() {
-        this.triggerValidate();
+        this.validateAndSaveResult();
+    }
+
+    private validateAndSaveResult() {
+        const validateResult = this.triggerValidate();
         let params = {};
-        params[this.props.name.toString()] = this.state.value;
+        params[this.props.name] = this.state.value;
+        params[this.props.name] = validateResult;
         this.props.formUpdated(params)
     }
 
@@ -96,7 +102,7 @@ class Field extends AbstractField {
         if (!fields || fields.indexOf(name) === -1) {
             return
         }
-        this.triggerValidate();
+        this.triggerValidate()
     }
 
     render() {
@@ -125,7 +131,7 @@ const mapStateToProps = (state) => {
     return {
         fields: state.validate.fields
     }
-}
+};
 export default connect(mapStateToProps, {formUpdated})(Field)
 
 const styles = StyleSheet.create({
@@ -143,4 +149,4 @@ const styles = StyleSheet.create({
         flex: 1,
         width: Dimensions.get('screen').width * 0.8
     }
-})
+});

@@ -1,21 +1,21 @@
 import React from 'react'
-import {Body, Button, Text} from 'native-base'
+import {Body, Button, Text, View} from 'native-base'
 import Field from './Field'
-import Form from "./Form";
 import {EmailValidator, NotEmptyValidator, PasswordValidator} from "../validate/Validators";
 import {connect} from "react-redux";
 import {validateField} from "../actions";
 
 interface Props {
+    formData?: object,
     validateField?: Function
 }
 
 class LoginForm extends React.Component<Props> {
-    private user: object;
+
+    formData = {};
 
     constructor(props) {
         super(props);
-        this.user = {};
     }
 
     private MESSAGES = {
@@ -26,7 +26,7 @@ class LoginForm extends React.Component<Props> {
     };
 
     onPress = () => {
-        console.log("PRESS:  ", this.user);
+        console.log("formData:  ", this.props.formData);
         this.props.validateField(["email", "password"])
     };
 
@@ -43,22 +43,22 @@ class LoginForm extends React.Component<Props> {
 
         return (
             <Body>
-            <Form fieldChange={(data) => {
-                Object.assign(this.user, data)
-            }}>
+            <View>
                 <Field name='email' placeHolder='Email' validates={validators}/>
                 <Field name='password' placeHolder='Password' validates={passwordValidators}
                        securityEntry={true}/>
                 <Button full style={{marginTop: 10}} onPress={this.onPress.bind(this)}>
                     <Text>Login</Text>
                 </Button>
-            </Form>
+            </View>
             </Body>
         )
     }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+    formData: state.form.formData,
+});
 
 export default connect(mapStateToProps, {validateField})(LoginForm)
 
