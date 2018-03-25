@@ -92,17 +92,28 @@ class Field extends AbstractField {
     private validateAndSaveResult() {
         const validateResult = this.triggerValidate();
         let params = {};
-        params[this.props.name] = this.state.value;
-        params[this.props.name] = validateResult;
+        params[this.props.name] = {};
+        params[this.props.name].value = this.state.value;
+        params[this.props.name].isValid = validateResult;
         this.props.formUpdated(params)
     }
 
     componentWillReceiveProps(props) {
         const {fields, name} = props;
-        if (!fields || fields.indexOf(name) === -1) {
+        if (!fields || this._containFields(fields, name)) {
             return
         }
-        this.triggerValidate()
+        this.triggerValidate();
+    }
+
+    private _containFields(fields, name) {
+        let hasContain = false;
+        fields.forEach(field => {
+            if (field.name === name) {
+                hasContain = true;
+            }
+        });
+        return hasContain
     }
 
     render() {

@@ -26,12 +26,11 @@ export const PhotoReducer = (state = {images: []}, action) => {
     }
 }
 
-export const FormReducer = (state = {formData: {}, validResult: {}}, action) => {
+export const FormReducer = (state = {formData: {}}, action) => {
     switch (action.type) {
         case REDUX_ACTION.FORM_UPDATED:
             return {
                 formData: Object.assign({}, state.formData, action.payload),
-                validResult: Object.assign({}, state.validResult, action.payload)
             };
         default:
             return state

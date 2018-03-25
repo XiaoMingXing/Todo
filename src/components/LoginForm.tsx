@@ -1,9 +1,10 @@
 import React from 'react'
-import {Body, Button, Text, View} from 'native-base'
+import {Body, Button, Text} from 'native-base'
 import Field from './Field'
 import {EmailValidator, NotEmptyValidator, PasswordValidator} from "../validate/Validators";
 import {connect} from "react-redux";
 import {validateField} from "../actions";
+import {ScrollView} from "react-native";
 
 interface Props {
     formData?: object,
@@ -26,8 +27,8 @@ class LoginForm extends React.Component<Props> {
     };
 
     onPress = () => {
-        console.log("formData:  ", this.props.formData);
         this.props.validateField(["email", "password"])
+        console.log("PRESS:  ", this.props.formData);
     };
 
     render() {
@@ -43,14 +44,14 @@ class LoginForm extends React.Component<Props> {
 
         return (
             <Body>
-            <View>
+            <ScrollView>
                 <Field name='email' placeHolder='Email' validates={validators}/>
                 <Field name='password' placeHolder='Password' validates={passwordValidators}
                        securityEntry={true}/>
                 <Button full style={{marginTop: 10}} onPress={this.onPress.bind(this)}>
                     <Text>Login</Text>
                 </Button>
-            </View>
+            </ScrollView>
             </Body>
         )
     }
