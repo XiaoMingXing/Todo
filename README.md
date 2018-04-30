@@ -10,3 +10,8 @@
 ## For run android
 - Use `adb devices` to check all the available devices
 - Use `emulator @Nexus6` to run `Nexus6` device
+
+## Debugger
+
+- Please note that you can use Node as a debugger process only with Node.js version 7 or below.
+ 

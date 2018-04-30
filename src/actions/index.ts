@@ -35,4 +35,3 @@ export const validateField = (value) => {
         payload: value
     }
 }
-

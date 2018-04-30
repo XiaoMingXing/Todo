@@ -7,6 +7,7 @@ import SideBar from "../components/SideBar";
 import AuthPage from "../areas/auth";
 import HomePage from "../areas/home";
 import ScrollablePage from "../areas/scroll";
+import MobXPage from "../areas/mobx";
 
 const ColorNav = StackNavigator({
     Main: {screen: MainPage},
@@ -21,7 +22,9 @@ const AppRoutes = DrawerNavigator({
     Home: {screen: HomePage},
     Auth: {screen: AuthPage},
     Color: {screen: ColorNav},
-    Scroll: {screen: ScrollablePage}
+    Scroll: {screen: ScrollablePage},
+    MobX: {screen: MobXPage},
+
 }, {
     contentComponent: props => <SideBar {...props} />,
     initialRouteName: 'Home'

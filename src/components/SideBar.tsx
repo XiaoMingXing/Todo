@@ -2,7 +2,7 @@ import React from 'react'
 import {Image} from 'react-native'
 import {Container, Content, List, ListItem, Text} from 'native-base'
 
-const routes = ['Home', 'Auth', 'Color', 'Scroll'];
+const routes = ['Home', 'Auth', 'Color', 'Scroll', 'MobX'];
 
 interface Props {
     navigation: { navigate: (scene: String) => void }

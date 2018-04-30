@@ -1,7 +1,7 @@
 import AppRoutes from "../config/Routes";
 
 const router = AppRoutes.router;
-const mainNavAction = router.getActionForPathAndParams('Auth');
+const mainNavAction = router.getActionForPathAndParams('Home');
 const initialNavState = router.getStateForAction(mainNavAction);
 
 

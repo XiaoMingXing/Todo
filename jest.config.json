@@ -1,0 +1,30 @@
+{
+  "preset": "react-native",
+  "setupTestFrameworkScriptFile": "./src/setupTestsFramwork.ts",
+  "transform": {
+    ".(js|jsx)$": "./node_modules/babel-jest",
+    ".(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+  },
+  "testMatch": [
+    "<rootDir>/**/__test__/**/*.*"
+  ],
+  "modulePaths": [
+    "<rootDir>"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "ts",
+    "jsx",
+    "tsx"
+  ],
+  "moduleNameMapper": {
+    "^.*\\.html$": "<rootDir>/src/testutil/HtmlStub",
+    ".+\\.(png|jpg|ttf|woff|woff2)$": "<rootDir>/src/assets/ecda/__mocks__/filemock.ts"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!react-native|react-navigation)/"
+  ],
+  "testResultsProcessor": "./node_modules/jest-bamboo-formatter",
+  "verbose": true,
+  "bail": true
+}
