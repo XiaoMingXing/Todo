@@ -10,7 +10,7 @@ interface AppProps {
 export default function ({ message }: AppProps) {
   return (
     <div>
-      <h1>Hello ABCD {message}</h1>
+      <h1>Hello AAAA {message}</h1>
       <button type="primary"> Test Xiaomixing</button>
       <Wow/>
     </div>
