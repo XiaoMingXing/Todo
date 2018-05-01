@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: [
         'react-hot-loader/patch',
-        './src/index.tsx'
+        './dist/index.js'
     ],
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -17,7 +17,7 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['ts-loader']
+                use: ['babel-loader']
             }
         ]
     },
