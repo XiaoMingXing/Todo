@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import * as ReactDOM from 'react-dom';
+
 import App from './components/App';
 import { sum } from './foo';
 
-render(
+ReactDOM.render(
   <App message="World"/>,
   document.getElementById('root'),
 );
