@@ -18,12 +18,7 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader', {
-                    loader: 'awesome-typescript-loader',
-                    options: {
-                        transpileOnly: true
-                    }
-                }],
+                use: ['babel-loader', 'awesome-typescript-loader'],
             }
         ]
     },
@@ -35,7 +30,6 @@ module.exports = {
             title: 'The Minimal React Webpack Babel Setup',
             template: 'index.html'
         }),
-        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()],
     devServer: {
         contentBase: './dist',

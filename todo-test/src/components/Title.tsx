@@ -8,7 +8,7 @@ interface HelloProps {
 
 class Title extends React.Component<HelloProps, {}> {
   render() {
-    return <div>Hello xiao, {this.props.name}</div>;
+    return <div>Hello aaa, {this.props.name}</div>;
   }
 }
 

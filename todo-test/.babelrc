@@ -3,9 +3,5 @@
     "env",
     "react",
     "stage-2"
-  ],
-  "plugins": [
-    "react-hot-loader/babel",
-    "transform-class-properties"
   ]
 }
