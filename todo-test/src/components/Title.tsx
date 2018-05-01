@@ -12,5 +12,6 @@ class Title extends React.Component<HelloProps, {}> {
   }
 }
 
+// the hot function is to do the hot load
 export default hot(module)(Title);
 
