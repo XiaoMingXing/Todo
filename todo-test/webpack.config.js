@@ -6,30 +6,36 @@ const webpack = require('webpack');
 module.exports = {
     entry: [
         'react-hot-loader/patch',
-        './dist/index.js'
+        './src/index.tsx'
     ],
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js'
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: ['babel-loader', {
+                    loader: 'awesome-typescript-loader',
+                    options: {
+                        transpileOnly: true
+                    }
+                }],
             }
         ]
     },
-    devtool: "source-map",
     resolve: {
-        extensions: ["*", ".ts", ".tsx", ".js"]
+        extensions: ['.tsx', '.ts', '.js', '.jsx']
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'The Minimal React Webpack Babel Setup',
             template: 'index.html'
         }),
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()],
     devServer: {
         contentBase: './dist',

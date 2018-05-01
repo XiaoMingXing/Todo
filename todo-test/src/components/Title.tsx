@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { hot } from 'react-hot-loader';
+
 
 interface HelloProps {
   name: string;
@@ -6,8 +8,9 @@ interface HelloProps {
 
 class Title extends React.Component<HelloProps, {}> {
   render() {
-    return <div>Hello aaaa, {this.props.name}</div>;
+    return <div>Hello xiao, {this.props.name}</div>;
   }
 }
 
-export default Title;
+export default hot(module)(Title);
+
