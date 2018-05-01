@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "removeComments": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
