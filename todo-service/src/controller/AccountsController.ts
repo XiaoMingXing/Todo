@@ -1,16 +1,17 @@
 import {TestAccount} from "../models/Accounts"
 import {Get, Route} from "tsoa"
 import {User} from "../models/user"
+import {AccountService} from "../service/AccountService"
 
 @Route("Accounts")
 export class AccountsController {
+
+    private accountService: AccountService = new AccountService()
+
     /** Get the current account */
     @Get("Current")
     public async current(): Promise<TestAccount> {
-        return {
-            id: 600,
-            name: "tests"
-        }
+        return await this.accountService.searchAccounts()
     }
 
     /** Get a list of users for the account */

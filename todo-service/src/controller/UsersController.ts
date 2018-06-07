@@ -11,7 +11,7 @@ export class UsersController extends Controller {
         email: "test@test.com",
         id: 1
     })
-    public async Current(): Promise<User> {
+    public async current(): Promise<User> {
         return {
             createdAt: new Date(),
             email: "test",
@@ -21,7 +21,7 @@ export class UsersController extends Controller {
 
     /** Get user by ID */
     @Get("{userId}")
-    public async Get(userId: number): Promise<User> {
+    public async get(userId: number): Promise<User> {
         return {
             createdAt: new Date(),
             email: "test2",
@@ -34,7 +34,7 @@ export class UsersController extends Controller {
      * @param request This is a user creation request description
      */
     @Post()
-    public async Create(@Body() request: UserCreateRequest): Promise<User> {
+    public async create(@Body() request: UserCreateRequest): Promise<User> {
         return {
             createdAt: new Date(),
             email: request.email,
@@ -44,13 +44,13 @@ export class UsersController extends Controller {
 
     /** Delete a user by ID */
     @Delete("{userId}")
-    public async Delete(userId: number): Promise<void> {
+    public async delete(userId: number): Promise<void> {
         return Promise.resolve()
     }
 
     /** Update a user */
     @Patch()
-    public async Update(@Body() request: UserUpdateRequest): Promise<User> {
+    public async update(@Body() request: UserUpdateRequest): Promise<User> {
         return {
             createdAt: request.createdAt,
             email: request.email,

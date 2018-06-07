@@ -78,7 +78,7 @@ export function RegisterRoutes(app: any) {
 
             const controller = new UsersController()
 
-            const promise = controller.Current.apply(controller, validatedArgs)
+            const promise = controller.current.apply(controller, validatedArgs)
             let statusCode = undefined
             if (controller instanceof Controller) {
                 statusCode = (controller as Controller).getStatus()
@@ -100,7 +100,7 @@ export function RegisterRoutes(app: any) {
 
             const controller = new UsersController()
 
-            const promise = controller.Get.apply(controller, validatedArgs)
+            const promise = controller.get.apply(controller, validatedArgs)
             let statusCode = undefined
             if (controller instanceof Controller) {
                 statusCode = (controller as Controller).getStatus()
@@ -122,7 +122,7 @@ export function RegisterRoutes(app: any) {
 
             const controller = new UsersController()
 
-            const promise = controller.Create.apply(controller, validatedArgs)
+            const promise = controller.create.apply(controller, validatedArgs)
             let statusCode = undefined
             if (controller instanceof Controller) {
                 statusCode = (controller as Controller).getStatus()
@@ -144,7 +144,7 @@ export function RegisterRoutes(app: any) {
 
             const controller = new UsersController()
 
-            const promise = controller.Delete.apply(controller, validatedArgs)
+            const promise = controller.delete.apply(controller, validatedArgs)
             let statusCode = undefined
             if (controller instanceof Controller) {
                 statusCode = (controller as Controller).getStatus()
@@ -166,7 +166,7 @@ export function RegisterRoutes(app: any) {
 
             const controller = new UsersController()
 
-            const promise = controller.Update.apply(controller, validatedArgs)
+            const promise = controller.update.apply(controller, validatedArgs)
             let statusCode = undefined
             if (controller instanceof Controller) {
                 statusCode = (controller as Controller).getStatus()
