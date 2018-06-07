@@ -1,30 +1,30 @@
-import {TestAccount} from '../models/Accounts'
-import {Get, Route} from 'tsoa'
-import {User} from '../models/user'
+import {TestAccount} from "../models/Accounts"
+import {Get, Route} from "tsoa"
+import {User} from "../models/user"
 
-@Route('Accounts')
+@Route("Accounts")
 export class AccountsController {
     /** Get the current account */
-    @Get('Current')
+    @Get("Current")
     public async current(): Promise<TestAccount> {
         return {
             id: 600,
-            name: 'tests'
+            name: "tests"
         }
     }
 
     /** Get a list of users for the account */
-    @Get('Users')
+    @Get("Users")
     public async getUsers(): Promise<User[]> {
         return [
             {
                 createdAt: new Date(),
-                email: 'test@test.com',
+                email: "test@test.com",
                 id: 1
             },
             {
                 createdAt: new Date(),
-                email: 'test2@test2.com',
+                email: "test2@test2.com",
                 id: 2
             }
         ]

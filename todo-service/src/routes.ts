@@ -1,31 +1,31 @@
-import {Controller, ValidateParam} from 'tsoa'
-import {AccountsController} from './controller/AccountsController'
-import {UsersController} from './controller/UsersController'
+import {Controller, ValidateParam} from "tsoa"
+import {AccountsController} from "./controller/AccountsController"
+import {UsersController} from "./controller/UsersController"
 
 const models: any = {
-    'User': {
-        'id': {'required': true, 'typeName': 'double'},
-        'email': {'required': true, 'typeName': 'string'},
-        'createdAt': {'required': true, 'typeName': 'datetime'}
+    "User": {
+        "id": {"required": true, "typeName": "double"},
+        "email": {"required": true, "typeName": "string"},
+        "createdAt": {"required": true, "typeName": "datetime"}
     },
-    'TestAccount': {
-        'id': {'required': true, 'typeName': 'double'},
-        'address': {'required': false, 'typeName': 'string'},
-        'name': {'required': true, 'typeName': 'string'},
-        'users': {'required': false, 'typeName': 'array', 'array': {'typeName': 'User'}},
-        'fields': {'required': false, 'typeName': 'array', 'array': {'typeName': 'string'}}
+    "TestAccount": {
+        "id": {"required": true, "typeName": "double"},
+        "address": {"required": false, "typeName": "string"},
+        "name": {"required": true, "typeName": "string"},
+        "users": {"required": false, "typeName": "array", "array": {"typeName": "User"}},
+        "fields": {"required": false, "typeName": "array", "array": {"typeName": "string"}}
     },
-    'UserCreateRequest': {
-        'email': {'required': true, 'typeName': 'string'}
+    "UserCreateRequest": {
+        "email": {"required": true, "typeName": "string"}
     },
-    'UserUpdateRequest': {
-        'createdAt': {'required': false, 'typeName': 'datetime'},
-        'email': {'required': true, 'typeName': 'string'}
+    "UserUpdateRequest": {
+        "createdAt": {"required": false, "typeName": "datetime"},
+        "email": {"required": true, "typeName": "string"}
     }
 }
 
 export function RegisterRoutes(app: any) {
-    app.get('/v1/Accounts/Current',
+    app.get("/v1/Accounts/Current",
         function (request: any, response: any, next: any) {
             const args = {}
 
@@ -45,7 +45,7 @@ export function RegisterRoutes(app: any) {
             }
             promiseHandler(promise, statusCode, response, next)
         })
-    app.get('/v1/Accounts/Users',
+    app.get("/v1/Accounts/Users",
         function (request: any, response: any, next: any) {
             const args = {}
 
@@ -65,7 +65,7 @@ export function RegisterRoutes(app: any) {
             }
             promiseHandler(promise, statusCode, response, next)
         })
-    app.get('/v1/Users/Current',
+    app.get("/v1/Users/Current",
         function (request: any, response: any, next: any) {
             const args = {}
 
@@ -85,10 +85,10 @@ export function RegisterRoutes(app: any) {
             }
             promiseHandler(promise, statusCode, response, next)
         })
-    app.get('/v1/Users/:userId',
+    app.get("/v1/Users/:userId",
         function (request: any, response: any, next: any) {
             const args = {
-                userId: {'in': 'path', 'name': 'userId', 'required': true, 'typeName': 'double'}
+                userId: {"in": "path", "name": "userId", "required": true, "typeName": "double"}
             }
 
             let validatedArgs: any[] = []
@@ -107,10 +107,10 @@ export function RegisterRoutes(app: any) {
             }
             promiseHandler(promise, statusCode, response, next)
         })
-    app.post('/v1/Users',
+    app.post("/v1/Users",
         function (request: any, response: any, next: any) {
             const args = {
-                request: {'in': 'body', 'name': 'request', 'required': true, 'typeName': 'UserCreateRequest'}
+                request: {"in": "body", "name": "request", "required": true, "typeName": "UserCreateRequest"}
             }
 
             let validatedArgs: any[] = []
@@ -129,10 +129,10 @@ export function RegisterRoutes(app: any) {
             }
             promiseHandler(promise, statusCode, response, next)
         })
-    app.delete('/v1/Users/:userId',
+    app.delete("/v1/Users/:userId",
         function (request: any, response: any, next: any) {
             const args = {
-                userId: {'in': 'path', 'name': 'userId', 'required': true, 'typeName': 'double'}
+                userId: {"in": "path", "name": "userId", "required": true, "typeName": "double"}
             }
 
             let validatedArgs: any[] = []
@@ -151,10 +151,10 @@ export function RegisterRoutes(app: any) {
             }
             promiseHandler(promise, statusCode, response, next)
         })
-    app.patch('/v1/Users',
+    app.patch("/v1/Users",
         function (request: any, response: any, next: any) {
             const args = {
-                request: {'in': 'body', 'name': 'request', 'required': true, 'typeName': 'UserUpdateRequest'}
+                request: {"in": "body", "name": "request", "required": true, "typeName": "UserUpdateRequest"}
             }
 
             let validatedArgs: any[] = []
@@ -192,17 +192,17 @@ export function RegisterRoutes(app: any) {
         return Object.keys(args).map(key => {
             const name = args[key].name
             switch (args[key].in) {
-                case 'request':
+                case "request":
                     return request
-                case 'query':
+                case "query":
                     return ValidateParam(args[key], request.query[name], models, name, undefined)
-                case 'path':
+                case "path":
                     return ValidateParam(args[key], request.params[name], models, name, undefined)
-                case 'header':
+                case "header":
                     return ValidateParam(args[key], request.header(name), models, name, undefined)
-                case 'body':
+                case "body":
                     return ValidateParam(args[key], request.body, models, name, undefined)
-                case 'body-prop':
+                case "body-prop":
                     return ValidateParam(args[key], request.body[name], models, name, undefined)
                 default:
                     return undefined

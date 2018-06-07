@@ -1,30 +1,30 @@
-import {Body, Controller, Delete, Example, Get, Patch, Post, Route} from 'tsoa'
-import {User, UserCreateRequest, UserUpdateRequest} from '../models/user'
+import {Body, Controller, Delete, Example, Get, Patch, Post, Route} from "tsoa"
+import {User, UserCreateRequest, UserUpdateRequest} from "../models/user"
 
-@Route('Users')
+@Route("Users")
 export class UsersController extends Controller {
 
     /** Get the current user */
-    @Get('Current')
+    @Get("Current")
     @Example<User>({
         createdAt: new Date(),
-        email: 'test@test.com',
+        email: "test@test.com",
         id: 1
     })
     public async Current(): Promise<User> {
         return {
             createdAt: new Date(),
-            email: 'test',
+            email: "test",
             id: 666
         }
     }
 
     /** Get user by ID */
-    @Get('{userId}')
+    @Get("{userId}")
     public async Get(userId: number): Promise<User> {
         return {
             createdAt: new Date(),
-            email: 'test2',
+            email: "test2",
             id: userId
         }
     }
@@ -43,7 +43,7 @@ export class UsersController extends Controller {
     }
 
     /** Delete a user by ID */
-    @Delete('{userId}')
+    @Delete("{userId}")
     public async Delete(userId: number): Promise<void> {
         return Promise.resolve()
     }
