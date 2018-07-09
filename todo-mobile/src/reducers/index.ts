@@ -7,7 +7,7 @@ const AppReducer = combineReducers({
     form: FormReducer,
     validate: ValidateReducer,
     color: ColorReducer,
-    photo: PhotoReducer,
+    photo: PhotoReducer
 })
 
 export default AppReducer

@@ -10,22 +10,22 @@ interface Props {
 class Form extends Component<Props> {
 
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     callback = (key, value) => {
-        let formData = this.props.formData;
-        formData[key] = value;
-        this.setState({formData});
+        let formData = this.props.formData
+        formData[key] = value
+        this.setState({formData})
 
-    };
+    }
 
     componentDidMount() {
-        console.log("LOCAL STORAGE FORM: ", this.props.formData)
+        console.log('LOCAL STORAGE FORM: ', this.props.formData)
     }
 
     componentDidUpdate() {
-        let {formData} = this.props;
+        let {formData} = this.props
         this.props.fieldChange(formData)
     }
 
@@ -40,6 +40,5 @@ class Form extends Component<Props> {
 
 const mapStateToProps = (state) => ({
     formData: state.form.formData
-});
+})
 export default connect(mapStateToProps)(Form)
-

@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {Body, Icon, Input, Item} from 'native-base'
 import {Dimensions, StyleSheet, Text, View} from 'react-native'
-import {connect} from 'react-redux';
-import {formUpdated} from "../actions";
+import {connect} from 'react-redux'
+import {formUpdated} from "../actions"
 
 interface Props {
     isReady?: false
@@ -13,6 +13,7 @@ interface Props {
     // for redux actions
     formUpdated?: Function
     fields: string[],
+    formData?: any
 }
 
 interface State {
@@ -24,7 +25,7 @@ interface State {
 
 class AbstractField extends React.Component<Props, State> {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             isValid: true,
             isDirty: false,
@@ -33,7 +34,7 @@ class AbstractField extends React.Component<Props, State> {
     }
 
     validate = (): any => {
-        let isValid: boolean = false;
+        let isValid: boolean = false
         for (let validate of this.props.validates) {
             if (!validate.validate(this.state.value)) {
                 return validate
@@ -43,7 +44,7 @@ class AbstractField extends React.Component<Props, State> {
     }
 
     triggerValidate = (): boolean => {
-        let errorValidator = this.validate();
+        let errorValidator = this.validate()
         if (errorValidator) {
             this.setState({
                 isDirty: true,
@@ -57,7 +58,7 @@ class AbstractField extends React.Component<Props, State> {
                 currentErrorMsg: ''
             })
         }
-        return !errorValidator;
+        return !errorValidator
     }
 
     getCurrentStatus = (): any => {
@@ -76,43 +77,43 @@ class AbstractField extends React.Component<Props, State> {
 
 class Field extends AbstractField {
     constructor(props) {
-        super(props);
+        super(props)
+        const {formData} = this.props
+        const name = this.props.name
+        const value = formData[name] && formData[name].value
         this.state = {
-            value: ''
-        };
-        // store.subscribe(() => {
-        //     console.log("STATE: ", store.getState())
-        // })
+            value
+        }
     }
 
     onBlur() {
-        this.validateAndSaveResult();
+        this.validateAndSaveResult()
     }
 
     private validateAndSaveResult() {
-        const validateResult = this.triggerValidate();
-        let params = {};
-        params[this.props.name] = {};
-        params[this.props.name].value = this.state.value;
-        params[this.props.name].isValid = validateResult;
+        const validateResult = this.triggerValidate()
+        let params = {}
+        params[this.props.name] = {}
+        params[this.props.name].value = this.state.value
+        params[this.props.name].isValid = validateResult
         this.props.formUpdated(params)
     }
 
     componentWillReceiveProps(props) {
-        const {fields, name} = props;
+        const {fields, name} = props
         if (!fields || this._containFields(fields, name)) {
             return
         }
-        this.triggerValidate();
+        this.triggerValidate()
     }
 
     private _containFields(fields, name) {
-        let hasContain = false;
+        let hasContain = false
         fields.forEach(field => {
             if (field.name === name) {
-                hasContain = true;
+                hasContain = true
             }
-        });
+        })
         return hasContain
     }
 
@@ -140,9 +141,10 @@ class Field extends AbstractField {
 
 const mapStateToProps = (state) => {
     return {
-        fields: state.validate.fields
+        fields: state.validate.fields,
+        formData: state.form.formData
     }
-};
+}
 export default connect(mapStateToProps, {formUpdated})(Field)
 
 const styles = StyleSheet.create({
@@ -160,4 +162,4 @@ const styles = StyleSheet.create({
         flex: 1,
         width: Dimensions.get('screen').width * 0.8
     }
-});
+})

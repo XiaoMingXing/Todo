@@ -1,4 +1,4 @@
-import {REDUX_ACTION} from "../config/Constants";
+import {REDUX_ACTION} from '../config/Constants'
 
 const initialState = {
     colorName: 'RED',
@@ -14,8 +14,7 @@ export const ColorReducer = (state = initialState, action) => {
         default:
             return state
     }
-};
-
+}
 
 export const PhotoReducer = (state = {images: []}, action) => {
     switch (action.type) {
@@ -30,8 +29,8 @@ export const FormReducer = (state = {formData: {}}, action) => {
     switch (action.type) {
         case REDUX_ACTION.FORM_UPDATED:
             return {
-                formData: Object.assign({}, state.formData, action.payload),
-            };
+                formData: Object.assign({}, state.formData, action.payload)
+            }
         default:
             return state
     }
@@ -43,11 +42,8 @@ export const ValidateReducer = (state = [], action) => {
         case REDUX_ACTION.VALIDATE_FILED:
             return {
                 fields: action.payload
-            };
+            }
         default:
             return state
     }
 }
-
-
-

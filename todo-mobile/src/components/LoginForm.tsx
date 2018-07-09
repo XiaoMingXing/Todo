@@ -7,17 +7,11 @@ import {validateField} from '../actions'
 import {ScrollView} from 'react-native'
 
 interface Props {
-    formData?: object,
+    formData?: any,
     validateField?: Function
 }
 
 class LoginForm extends React.Component<Props> {
-
-    formData = {}
-
-    constructor(props) {
-        super(props)
-    }
 
     private MESSAGES = {
         emailNotEmpty: 'The email format should not empty!',
@@ -26,9 +20,17 @@ class LoginForm extends React.Component<Props> {
         passwordValid: 'Password should contains Uppercase, Lowercase and number!'
     }
 
+    constructor(props) {
+        super(props)
+    }
+
     onPress = () => {
         this.props.validateField(['email', 'password'])
         console.log('PRESS:  ', this.props.formData)
+    }
+
+    onLoginSingPass = () => {
+
     }
 
     render() {
@@ -50,6 +52,9 @@ class LoginForm extends React.Component<Props> {
                        securityEntry={true}/>
                 <Button full style={{marginTop: 10}} onPress={this.onPress.bind(this)}>
                     <Text>Login</Text>
+                </Button>
+                <Button full style={{marginTop: 10}} onPress={this.onLoginSingPass.bind(this)}>
+                    <Text>Login via SingPass</Text>
                 </Button>
             </ScrollView>
             </Body>

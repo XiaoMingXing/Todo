@@ -2,7 +2,7 @@ import React from 'react'
 import {addNavigationHelpers} from 'react-navigation'
 import {connect} from 'react-redux'
 import {addListener} from './config/utils'
-import AppRoutes from "./config/Routes";
+import AppRoutes from './config/Routes'
 
 const AppWithState = ({dispatch, nav}) => (
     <AppRoutes navigation={addNavigationHelpers({
